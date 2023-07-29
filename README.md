@@ -1,53 +1,51 @@
-# Add-Course-Using-PHP-HTML-CSS-JS
+<div style="background-color: black; color: white; padding: 20px; font-family: 'Courier New', monospace;">
+  <h1 style="color: #00FF00;">Add-Course-Using-PHP-HTML-CSS-JS</h1>
 
+  <h2>Project Overview</h2>
 
-Project Overview:
-The project is a simple web application for managing college courses. It allows users to view a list of available courses, add new courses, and enroll in courses. The application is built using HTML, CSS, JavaScript, PHP, and MySQL. Courses are stored in a MySQL database, and PHP is used to handle form submissions and database operations.
+  <p>The project is a simple web application for managing college courses. It allows users to view a list of available courses, add new courses, and enroll in courses. The application is built using HTML, CSS, JavaScript, PHP, and MySQL. Courses are stored in a MySQL database, and PHP is used to handle form submissions and database operations.</p>
 
-# User Manual:
-   
-# Requirements:
+  <h2>User Manual</h2>
 
-Web server (e.g., Apache, Nginx)
-PHP
-MySQL database server
+  <h3>Requirements:</h3>
+  <ul>
+    <li>Web server (e.g., Apache, Nginx)</li>
+    <li>PHP</li>
+    <li>MySQL database server</li>
+  </ul>
 
+  <h3>Installation Steps:</h3>
+  <ol>
+    <li>Download the project files from the GitHub repository.</li>
+    <li>Create a new database in MySQL for the project. You can use phpMyAdmin or any other MySQL management tool.</li>
+    <li>Import the <code>course.sql</code> file into the newly created database. This file contains the necessary table structure for the courses. Here's how to import the file using phpMyAdmin:
+      <ul>
+        <li>Open phpMyAdmin and select the database you created.</li>
+        <li>Click on the "Import" tab in the top menu.</li>
+        <li>Choose the <code>course.sql</code> file using the file selector.</li>
+        <li>Click the "Go" button to import the file and create the necessary table.</li>
+      </ul>
+    </li>
+    <li>Place the project files in the document root of your web server (e.g., <code>htdocs</code> for XAMPP or <code>www</code> for WAMP).</li>
+    <li>Make sure your web server and MySQL server are running.</li>
+    <li>Update the database connection parameters in the <code>save_course.php</code> file to match your MySQL server configuration.</li>
+    <li>Open the <code>index.html</code> file in your web browser. You should see the list of available courses and be able to add new courses and enroll in them.</li>
+  </ol>
 
-# Installation Steps:
+  <h3>Usage:</h3>
+  <ul>
+    <li><strong>View Courses:</strong> On the main page (<code>index.html</code>), you can view a list of available courses. The courses are fetched from the database and displayed on the page.</li>
+    <li><strong>Add New Course:</strong> To add a new course, click the "+ Add New Courses" button. A form will appear where you can enter the course details (name, description, duration, and image). After filling in the details, click the "Add" button to save the course to the database.</li>
+    <li><strong>Enroll in Course:</strong> Each course card has an "Enroll Now" button. Clicking this button will display an alert message indicating that you have enrolled in the selected course.</li>
+  </ul>
 
-Download the project files from the GitHub repository.
+  <h3>Important Note:</h3>
+  <ul>
+    <li>This is a basic and simplified project for educational purposes. In a real-world scenario, you would need to implement proper security measures and validation for user inputs.</li>
+    <li>For production use, consider deploying the application on a secure web server and using proper authentication and authorization mechanisms.</li>
+  </ul>
 
-Create a new database in MySQL for the project. You can use phpMyAdmin or any other MySQL management tool.
-
-Import the course.sql file into the newly created database. This file contains the necessary table structure for the courses. Here's how to import the file using phpMyAdmin:
-
-Open phpMyAdmin and select the database you created.
-Click on the "Import" tab in the top menu.
-Choose the course.sql file using the file selector.
-Click the "Go" button to import the file and create the necessary table.
-Place the project files in the document root of your web server (e.g., htdocs for XAMPP or www for WAMP).
-
-Make sure your web server and MySQL server are running.
-
-# Update the database connection parameters in the save_course.php file to match your MySQL server configuration.
- 
-// Database connection parameters
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "";
-$db_name = "your_database_name";
-
-Open the index.html file in your web browser. You should see the list of available courses and be able to add new courses and enroll in them.
-
-# Usage:
-
-View Courses: On the main page (index.html), you can view a list of available courses. The courses are fetched from the database and displayed on the page.
-
-Add New Course: To add a new course, click the "+ Add New Courses" button. A form will appear where you can enter the course details (name, description, duration, and image). After filling in the details, click the "Add" button to save the course to the database.
-
-Enroll in Course: Each course card has an "Enroll Now" button. Clicking this button will display an alert message indicating that you have enrolled in the selected course.
-
-# Important Note:
-
-This is a basic and simplified project for educational purposes. In a real-world scenario, you would need to implement proper security measures and validation for user inputs.
-For production use, consider deploying the application on a secure web server and using proper authentication and authorization mechanisms.
+  <h2>GitHub Repository</h2>
+  <p>Make sure your GitHub repository includes all the necessary files and folders, including the <code>course.sql</code> file. You can create a <code>README.md</code> file to provide more detailed information about the project, its purpose, and installation steps. Include any relevant documentation or usage instructions to help users understand and set up the project on their local machines.</p>
+  <p>By following these steps and using the <code>course.sql</code> file, users will be able to clone your GitHub repository, set up the project on their local machines, and use the web application to manage college courses.</p>
+</div>
