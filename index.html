@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Courses</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>College Courses</h1>
+  </header>
+  <button id="add-course-btn" class="button-3"> + &nbsp Add New Courses</button>
+  <main id="course-list">
+  </main>
+
+  <div id="add-course-page">
+    <h2>Add New Course</h2>
+    <form id="course-form" method="post" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" placeholder="course Name" required>
+
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" placeholder="Description of Course" rows="4" required></textarea>
+
+      <label for="duration">Duration:</label>
+      <input type="number" name="duration" value="Month" placeholder="Duration in month" id="duration" required>
+
+      <label for="image">Image:</label>
+      <input type="file" name="image" id="image" accept="image/*" required>
+
+      <button type="submit">Add</button>
+      <button type="button" id="cancel-btn">Cancel</button>
+    </form>
+  </div>
+
+  <script>
+    // Function to generate and display course cards
+    function displayCourses(courses) {
+      const courseList = document.getElementById('course-list');
+      courseList.innerHTML = ''; // Clear existing course cards
+
+      courses.forEach(course => {
+        const courseCard = document.createElement('div');
+        courseCard.classList.add('course-card');
+
+        const thumbnail = document.createElement('img');
+        thumbnail.src = course.image;
+        thumbnail.alt = course.name;
+        thumbnail.classList.add('course-thumbnail');
+        courseCard.appendChild(thumbnail);
+
+        const courseName = document.createElement('div');
+        courseName.classList.add('course-name');
+        courseName.textContent = course.name;
+        courseCard.appendChild(courseName);
+
+        const courseDuration = document.createElement('div');
+        courseDuration.classList.add('course-duration');
+        courseDuration.textContent = `Duration: ${course.duration}`;
+        courseCard.appendChild(courseDuration);
+
+        const courseDescription = document.createElement('div');
+        courseDescription.classList.add('course-description');
+        courseDescription.textContent = course.description;
+        courseCard.appendChild(courseDescription);
+
+        const enrollButton = document.createElement('button');
+        enrollButton.textContent = 'Enroll Now';
+        enrollButton.classList.add('enroll-button');
+        courseCard.appendChild(enrollButton);
+
+        // Add a click event listener to the "Enroll Now" button
+        enrollButton.addEventListener('click', () => {
+          alert(`You have enrolled in the course: ${course.name}`);
+        });
+
+        courseList.appendChild(courseCard);
+      });
+    }
+
+    // Fetch courses data from the server using AJAX
+    function fetchCourses() {
+    fetch('fetch_courses.php')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(courses => {
+        // Call the function to display the courses on the page
+        displayCourses(courses);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        const errorContainer = document.createElement('div');
+        errorContainer.textContent = 'An error occurred while fetching courses. Please try again later.';
+        document.getElementById('course-list').appendChild(errorContainer);
+      });
+  }
+
+    // Function to show the "Add Course" page
+    function showAddCoursePage() {
+      const courseList = document.getElementById('course-list');
+      courseList.style.display = 'none';
+
+      const addCoursePage = document.getElementById('add-course-page');
+      addCoursePage.style.display = 'block';
+    }
+
+    // Function to hide the "Add Course" page
+    function hideAddCoursePage() {
+      const courseList = document.getElementById('course-list');
+      courseList.style.display = 'flex';
+
+      const addCoursePage = document.getElementById('add-course-page');
+      addCoursePage.style.display = 'none';
+    }
+
+    // Function to handle form submission
+    function addNewCourse(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('name');
+      const descriptionInput = document.getElementById('description');
+      const durationInput = document.getElementById('duration');
+      const imageInput = document.getElementById('image');
+
+      const name = nameInput.value.trim();
+      const description = descriptionInput.value.trim();
+      const duration = durationInput.value.trim();
+      const image = imageInput.files[0]; // Get the selected image file
+
+      if (name !== '' && description !== '' && duration !== '' && image) {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('duration', duration);
+        formData.append('image', image);
+
+        fetch('save_course.php', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.text())
+          .then(message => {
+            alert(message);
+            // Refresh the course list after successful submission
+            fetchCourses();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while processing the form.');
+          });
+
+        // Clear the form inputs
+        nameInput.value = '';
+        descriptionInput.value = '';
+        durationInput.value = '';
+        imageInput.value = '';
+        // Hide the "Add Course" page and show the course list
+        hideAddCoursePage();
+      } else {
+        alert('Please fill in all the required fields and select an image.');
+      }
+    }
+
+    // Function to handle the "Cancel" button click on the "Add Course" page
+    function cancelAddCourse() {
+      // Clear the form inputs
+      document.getElementById('name').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('duration').value = '';
+      document.getElementById('image').value = '';
+      // Hide the "Add Course" page and show the course list
+      hideAddCoursePage();
+    }
+
+    // Add event listeners and call the function to display courses when the page loads
+    document.getElementById('add-course-btn').addEventListener('click', showAddCoursePage);
+    document.getElementById('course-form').addEventListener('submit', addNewCourse);
+    document.getElementById('cancel-btn').addEventListener('click', cancelAddCourse);
+    window.onload = fetchCourses;
+  </script>
+</body>
+</html>
