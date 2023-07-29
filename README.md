@@ -45,7 +45,5 @@
     <li>For production use, consider deploying the application on a secure web server and using proper authentication and authorization mechanisms.</li>
   </ul>
 
-  <h2>GitHub Repository</h2>
-  <p>Make sure your GitHub repository includes all the necessary files and folders, including the <code>course.sql</code> file. You can create a <code>README.md</code> file to provide more detailed information about the project, its purpose, and installation steps. Include any relevant documentation or usage instructions to help users understand and set up the project on their local machines.</p>
-  <p>By following these steps and using the <code>course.sql</code> file, users will be able to clone your GitHub repository, set up the project on their local machines, and use the web application to manage college courses.</p>
-</div>
+
+ <h6>Thank You ........... :)❤❤ </h6>
