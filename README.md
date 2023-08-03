@@ -2,6 +2,8 @@
   <h1 style="color: #00FF00;">Add-Course-Using-PHP-HTML-CSS-JS</h1>
 
   <h2>Project Overview</h2>
+ https://mahesh-langote.github.io/Add-Course-Using-PHP-HTML-CSS-JS/  (Due to PHP Database Connection you will get this error :  An error occurred while fetching courses. Please try again later.
+An error occurred while fetching courses. Please try again later. )
 
   <p>The project is a simple web application for managing college courses. It allows users to view a list of available courses, add new courses, and enroll in courses. The application is built using HTML, CSS, JavaScript, PHP, and MySQL. Courses are stored in a MySQL database, and PHP is used to handle form submissions and database operations.</p>
 
